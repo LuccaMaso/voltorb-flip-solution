@@ -9,8 +9,8 @@ def permutations(number, voltorb, row, answer, turn_string=False):
         if counter_number == number and counter_voltorb == voltorb:
             if turn_string:
                 answer.append("".join(list((map(str, row)))))
-                return
-            answer.append(row.copy())
+            else: 
+                answer.append(row.copy())
             return
     if counter_voltorb > voltorb or counter_number > number:
         return 
@@ -18,6 +18,7 @@ def permutations(number, voltorb, row, answer, turn_string=False):
         row.append(i)
         permutations(number, voltorb, row, answer, turn_string)
         row.pop()
+
 
 def get_column(answer):
     column = len(answer)
@@ -30,6 +31,7 @@ def get_column(answer):
         all_prefix.append("".join(word))
     return all_prefix
 
+
 def check_prefix(columns_permutations, answer):
     columns = get_column(answer)
     for i, prefix in enumerate(columns):
@@ -39,6 +41,7 @@ def check_prefix(columns_permutations, answer):
         else:
             return False
     return True
+
 
 def backtrack_solution(row_permutations, column_permutations, index, sequence, answer):
     if len(sequence) == 5:
@@ -50,9 +53,11 @@ def backtrack_solution(row_permutations, column_permutations, index, sequence, a
             backtrack_solution(row_permutations, column_permutations, index+1, sequence, answer)
         sequence.pop()
 
+
 def show_answer(answer):
     for solution in answer:
         print(solution)
+
 
 def heuristic(answer):
     length = len(answer)
@@ -79,6 +84,7 @@ def heuristic(answer):
             best_point = points
             best_play = key
     return (best_play[0]+1, best_play[1]+1)
+
 
 def zero_heurisct(answer):
     length = len(answer)
@@ -113,6 +119,7 @@ def choose_play(answer):
         print(f"There's a {chance:.2f} that {best_play} is not a voltorb")
     else:
         print(f"You should try playing: ", best_play)
+
 
 def is_finished(answer, played):
     first_solution = answer[0]
